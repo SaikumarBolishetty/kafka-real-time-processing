@@ -32,7 +32,7 @@ The entire flow from producing data, processing it, and potentially storing it e
    Make sure you have Docker installed on your machine. You can download it from [Docker's official website](https://www.docker.com/get-started).
    Ensure you have Docker Compose installed. If you have Docker Desktop, Docker Compose is included by default. You can verify the installation by running:
    ```bash
-   docker-compose --version
+   docker compose version
    ```
 
 3. **Install Python Dependencies**
