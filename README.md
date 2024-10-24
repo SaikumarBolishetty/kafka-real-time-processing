@@ -35,16 +35,15 @@ The entire flow from producing data, processing it, and potentially storing it e
    docker compose version
    ```
 
-3. **Install Python Dependencies**
-   If you haven't already, you need to install the required Python packages. You can do this by running:
+3. **Build and Start Docker Containers**
+   There is no need to install Python dependencies manually since this is handled inside the Docker container. Use Docker Compose to build the Docker images (which includes the Python environment and dependencies) and start the Kafka, Zookeeper, and consumer containers:
    ```bash
-   pip install confluent_kafka
+   docker compose up -d --build
    ```
-
-4. **Build and Start Docker Containers**
-   Use Docker Compose to build and start the Kafka and Zookeeper containers:
+4. **Check the Logs**
+   Once the containers are running, you can check the logs to verify that everything is working properly:
    ```bash
-   docker-compose up -d
+   docker compose logs python-consumer
    ```
 
 ## Running the Application
@@ -52,21 +51,24 @@ The entire flow from producing data, processing it, and potentially storing it e
 The producer is already running in the Docker container and is generating user login messages that are being sent to the `user-login` Kafka topic. No additional steps are needed to start the producer manually.
 
 ### Consumer
-Open a new terminal window and run the consumer script:
+The consumer is automatically started within the Docker container when you run the docker-compose command. There’s no need to run the consumer script separately.
+
+Here we have the consumer.py script, which subscribes to the user-login topic, processes the messages, performs some transformations (such as filtering out certain messages and adding a timestamp), and publishes the processed data to the processed-user-login topic.
+
+You can monitor the logs to ensure that the consumer is processing messages from the user-login topic:
 ```bash
-docker exec -it kafka-real-time-processing-kafka-1 python consumer.py
+docker compose logs python-consumer
 ```
-This command will start the consumer, which subscribes to the `user-login` topic, processes the messages, performs some transformations, and publishes the processed data to the `processed-user-login` topic.
 
 ## Viewing Kafka Topics and Logs
 1. **To view the existing Kafka topics:**
    ```bash
-   docker exec -it real-time-streaming-kafka-1 kafka-topics --list --bootstrap-server localhost:9092
+   docker exec -it real-time-streaming-kafka-1 kafka-topics --list --bootstrap-server kafka:9092
    ```
 
 2. **To view the logs of a specific topic (e.g., `user-login`):**
    ```bash
-   docker exec -it real-time-streaming-kafka-1 kafka-console-consumer --topic user-login --from-beginning --bootstrap-server localhost:9092
+   docker exec -it real-time-streaming-kafka-1 kafka-console-consumer --topic user-login --from-beginning --bootstrap-server kafka:9092
    ```
 
 ## Examples

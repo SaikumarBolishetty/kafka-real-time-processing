@@ -52,6 +52,7 @@ services:
     networks:
       - kafka-network
     command: python consumer.py
+    restart: always 
 
 networks:
   kafka-network:
