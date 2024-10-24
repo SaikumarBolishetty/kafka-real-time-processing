@@ -2,9 +2,6 @@ from confluent_kafka import Consumer, KafkaError, Producer
 import json
 import time
 
-import time
-time.sleep(10)  # Add a delay of 10 seconds to allow Kafka to start
-
 # Kafka Consumer Configuration
 consumer_conf = {
     'bootstrap.servers': 'kafka:9092',

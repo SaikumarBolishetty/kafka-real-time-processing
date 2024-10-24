@@ -24,8 +24,8 @@ The entire flow from producing data, processing it, and potentially storing it e
 ## Installation Instructions
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/SaikumarBolishetty/kafka-real-time-processing.git
-   cd kafka-real-time-processing
+   git clone https://github.com/SaikumarBolishetty/real-time-processing.git
+   cd cd real-time-processing
    ```
 
 2. **Install Docker and Docker Compose**
@@ -51,9 +51,7 @@ The entire flow from producing data, processing it, and potentially storing it e
 The producer is already running in the Docker container and is generating user login messages that are being sent to the `user-login` Kafka topic. No additional steps are needed to start the producer manually.
 
 ### Consumer
-The consumer is automatically started within the Docker container when you run the docker-compose command. There’s no need to run the consumer script separately.
-
-Here we have the consumer.py script, which subscribes to the user-login topic, processes the messages, performs some transformations (such as filtering out certain messages and adding a timestamp), and publishes the processed data to the processed-user-login topic.
+The consumer, which is responsible for subscribing to the `user-login` topic, processing the messages (e.g., filtering, transforming), and pushing the processed data to `processed-user-login`, runs automatically inside the Docker container.
 
 You can monitor the logs to ensure that the consumer is processing messages from the user-login topic:
 ```bash
@@ -63,13 +61,22 @@ docker compose logs python-consumer
 ## Viewing Kafka Topics and Logs
 1. **To view the existing Kafka topics:**
    ```bash
-   docker exec -it real-time-streaming-kafka-1 kafka-topics --list --bootstrap-server kafka:9092
+   docker exec -it real-time-processing-kafka-1 kafka-topics --list --bootstrap-server kafka:9092
    ```
 
 2. **To view the logs of a specific topic (e.g., `user-login`):**
+
+   **user-login topic**
    ```bash
-   docker exec -it real-time-streaming-kafka-1 kafka-console-consumer --topic user-login --from-beginning --bootstrap-server kafka:9092
+   docker exec -it real-time-processing-kafka-1 kafka-console-consumer --topic user-login --from-beginning --bootstrap-server kafka:9092
    ```
+   Sample Input: {"user_id": "63cd3c70-6c44-4971-9fc9-6c45612f31c9", "app_version": "2.3.0", "ip": "91.42.227.164", "locale": "NV", "device_id": "93f1cd25-fe64-4f2c-b574-f6c0345c3c8a", "timestamp": 1729741922, "device_type": "iOS"}
+
+   **processed-user-login topic**
+   ```bash
+   docker exec -it real-time-processing-kafka-1 kafka-console-consumer --topic user-login --from-beginning --bootstrap-server kafka:9092
+   ```
+   Sample Output: {"user_id": "febe8e82-8654-4af1-aa7d-4adc0818b2fa", "app_version": "2.3.0", "ip": "82.174.172.125", "locale": "NC", "device_id": "05e9fd85-606a-4744-a8c9-45eef16f19c9", "timestamp": 1729742327, "device_type": "android", "processed_timestamp": 1729742327}
 
 ## Examples
 1. **Producing a Message:**

@@ -45,14 +45,11 @@ services:
     build: .
     depends_on:
       - kafka
-    volumes:
-      - .:/app
     environment:
       BOOTSTRAP_SERVERS: "kafka:9092"
     networks:
       - kafka-network
     command: python consumer.py
-    restart: always 
 
 networks:
   kafka-network:
