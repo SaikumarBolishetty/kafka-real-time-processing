@@ -65,6 +65,8 @@ python consumer.py
    ```bash
    docker exec -it real-time-processing-kafka-1 kafka-console-consumer --topic user-login --from-beginning --bootstrap-server kafka:9092
    ```
+   <ctrl+c> : To stop the execution loop.
+   
    Sample Input: {"user_id": "63cd3c70-6c44-4971-9fc9-6c45612f31c9", "app_version": "2.3.0", "ip": "91.42.227.164", "locale": "NV", "device_id": "93f1cd25-fe64-4f2c-b574-f6c0345c3c8a", "timestamp": 1729741922, "device_type": "iOS"}
 
    **processed-user-login topic**
