@@ -1,1 +1,0 @@
-# kafka-real-time-processing
