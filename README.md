@@ -1,5 +1,5 @@
 
-# Kafka Real Time Processing Data Pipeline
+# Real Time Processing Data Pipeline
 
 ## Overview
 This project implements a real-time streaming data pipeline using Kafka. It consists of a producer that sends user login data to a Kafka topic and a consumer that processes the data.
