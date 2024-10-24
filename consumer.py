@@ -4,7 +4,7 @@ import time
 
 # Kafka Consumer Configuration
 consumer_conf = {
-    'bootstrap.servers': 'kafka:9092',
+    'bootstrap.servers': 'localhost:29092',
     'group.id': 'my-consumer-group',
     'auto.offset.reset': 'earliest'
 }
@@ -13,7 +13,7 @@ consumer = Consumer(consumer_conf)
 
 # Kafka Producer Configuration to send processed messages
 producer_conf = {
-    'bootstrap.servers': 'kafka:9092',
+    'bootstrap.servers': 'localhost:29092',
 }
 
 producer = Producer(producer_conf)

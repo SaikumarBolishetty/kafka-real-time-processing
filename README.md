@@ -36,14 +36,9 @@ The entire flow from producing data, processing it, and potentially storing it e
    ```
 
 3. **Build and Start Docker Containers**
-   There is no need to install Python dependencies manually since this is handled inside the Docker container. Use Docker Compose to build the Docker images (which includes the Python environment and dependencies) and start the Kafka, Zookeeper, and consumer containers:
+   There is no need to install Python dependencies manually since this is handled inside the Docker container. Use Docker Compose to build the Docker images (which includes the Python environment and dependencies) and start the Kafka, Zookeeper containers:
    ```bash
    docker compose up -d --build
-   ```
-4. **Check the Logs**
-   Once the containers are running, you can check the logs to verify that everything is working properly:
-   ```bash
-   docker compose logs python-consumer
    ```
 
 ## Running the Application
@@ -51,11 +46,11 @@ The entire flow from producing data, processing it, and potentially storing it e
 The producer is already running in the Docker container and is generating user login messages that are being sent to the `user-login` Kafka topic. No additional steps are needed to start the producer manually.
 
 ### Consumer
-The consumer, which is responsible for subscribing to the `user-login` topic, processing the messages (e.g., filtering, transforming), and pushing the processed data to `processed-user-login`, runs automatically inside the Docker container.
+The consumer script, which is responsible for subscribing to the `user-login` topic, processing the messages (e.g., filtering, transforming), and pushing the processed data to `processed-user-login`.
 
-You can monitor the logs to ensure that the consumer is processing messages from the user-login topic:
+Open a new terminal window and run the consumer script:
 ```bash
-docker compose logs python-consumer
+python consumer.py
 ```
 
 ## Viewing Kafka Topics and Logs

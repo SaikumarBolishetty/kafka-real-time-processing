@@ -9,6 +9,3 @@ COPY . /app
 
 # Install the required Kafka Python package
 RUN pip install --no-cache-dir confluent-kafka
-
-# Run consumer.py when the container launches
-CMD ["python", "consumer.py"]
