@@ -2,9 +2,12 @@ from confluent_kafka import Consumer, KafkaError, Producer
 import json
 import time
 
+import time
+time.sleep(10)  # Add a delay of 10 seconds to allow Kafka to start
+
 # Kafka Consumer Configuration
 consumer_conf = {
-    'bootstrap.servers': 'localhost:29092',
+    'bootstrap.servers': 'kafka:9092',
     'group.id': 'my-consumer-group',
     'auto.offset.reset': 'earliest'
 }
@@ -13,7 +16,7 @@ consumer = Consumer(consumer_conf)
 
 # Kafka Producer Configuration to send processed messages
 producer_conf = {
-    'bootstrap.servers': 'localhost:29092',
+    'bootstrap.servers': 'kafka:9092',
 }
 
 producer = Producer(producer_conf)

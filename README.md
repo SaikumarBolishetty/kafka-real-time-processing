@@ -54,7 +54,7 @@ The producer is already running in the Docker container and is generating user l
 ### Consumer
 Open a new terminal window and run the consumer script:
 ```bash
-docker exec -it real-time-streaming-kafka-1 python consumer.py
+docker exec -it kafka-real-time-processing-kafka-1 python consumer.py
 ```
 This command will start the consumer, which subscribes to the `user-login` topic, processes the messages, performs some transformations, and publishes the processed data to the `processed-user-login` topic.
 
