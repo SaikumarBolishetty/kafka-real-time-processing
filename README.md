@@ -24,7 +24,7 @@ The entire flow from producing data, processing it, and potentially storing it e
 ## Installation Instructions
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/kafka-real-time-processing.git
+   git clone https://github.com/SaikumarBolishetty/kafka-real-time-processing.git
    cd kafka-real-time-processing
    ```
 
