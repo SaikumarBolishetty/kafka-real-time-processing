@@ -52,6 +52,8 @@ Open a new terminal window and run the consumer script:
 ```bash
 python consumer.py
 ```
+![image](https://github.com/user-attachments/assets/eceb8249-3806-46b2-8c2b-2f18bc9f07f1)
+
 
 ## Viewing Kafka Topics and Logs
 1. **To view the existing Kafka topics:**
