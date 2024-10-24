@@ -25,7 +25,7 @@ The entire flow from producing data, processing it, and potentially storing it e
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/SaikumarBolishetty/real-time-processing.git
-   cd cd real-time-processing
+   cd real-time-processing
    ```
 
 2. **Install Docker and Docker Compose**
